@@ -1,0 +1,11 @@
+ Volume in drive C is OS
+ Volume Serial Number is CAFD-BFA1
+
+ Directory of C:\peg\UNIS\Prg\C#\MyC#\cs04-ASP-MyGit\MyGit\mygitdata\dir1
+
+15.04.2021  18:10    <DIR>          .
+15.04.2021  18:10    <DIR>          ..
+15.04.2021  18:10                 0 QQ.Txt
+               1 File(s)              0 bytes
+               2 Dir(s)  41ÿ936ÿ355ÿ328 bytes free
+The next line!
