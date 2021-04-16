@@ -1,4 +1,4 @@
-# MyGit v1.01 - My Control Version System
+# MyGit v1.02 - My Control Version System
 
 ## Popis:
 
