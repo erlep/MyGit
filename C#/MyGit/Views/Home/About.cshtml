@@ -1,0 +1,20 @@
+﻿@{
+  ViewData["Title"] = "MyGit - My Control Version System";
+}
+<h2 id="popis">Popis:</h2>
+<p><a href="http://ASP.NET">ASP.NET</a> Core applikaction for file version control system.</p>
+<p>
+  Program umí detekovat změny v lokálním adresáři uvedeném na vstupu.
+  Při prvním spuštění si program obsah daného adresáře analyzuje a při
+  každém dalším spuštění bude hlásit změny od svého posledního spuštění.
+</p>
+<h2 id="hlášky">Hlášky:</h2>
+<p>[A] = added (nový soubor)</p>
+<p>[M] = modified (změněný soubor)</p>
+<p>[D] = deleted (odstraněný soubor)</p>
+<h2 id="realizace">Realizace:</h2>
+<p>Program je napsán v <a href="http://ASP.NET">ASP.NET</a> Core v2.1. Informace o změnách nesmí být v databázi. Proto jsem zvolil ukládání do souboru &quot;.MyGit.Cvs.Csv&quot; formátu .csv, který se nachází v každém adresáři. Pro práci s .csv jsem použil .NET knihovnu CsvHelper (<a href="https://joshclose.github.io/CsvHelper">https://joshclose.github.io/CsvHelper</a>)</p>
+<h2 id="odkazy">Odkazy:</h2>
+<h2 id="github-url---httpsgithubcomerlepmygit">GitHub URL - <a href="https://github.com/erlep/MyGit">https://github.com/erlep/MyGit</a></h2>
+<h2 id="aspnet-web---httppegaspifyhostcz"><a href="http://ASP.NET">ASP.NET</a> Web - <a href="http://peg.aspifyhost.cz">http://peg.aspifyhost.cz</a></h2>
+<h2 id="made-by-peg---httpsgithubcomerlep">made by peg - <a href="https://GitHub.com/ErleP">https://GitHub.com/ErleP</a></h2>

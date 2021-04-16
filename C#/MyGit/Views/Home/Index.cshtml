@@ -17,8 +17,8 @@
         <span asp-validation-for="tbPath" class="text-danger"></span>
       </div>
       <div class="form-group">
-        <input type="submit" value="Index" class="btn btn-default" />
-        <button type="submit" asp-route-data="P2L" class="btn btn-default">P2L</button>
+        @*<input type="submit" value="Index" class="btn btn-default" />
+          <button type="submit" asp-route-data="P2L" class="btn btn-default">P2L</button>*@
         <button type="submit" asp-route-data="Check" class="btn btn-default">Check</button>
         <button type="submit" asp-route-data="Init" class="btn btn-default">Init</button>
         <button type="submit" asp-route-data="Dirs" class="btn btn-default">Dirs</button>
@@ -29,28 +29,22 @@
   </div>
 </div>
 <form method="POST">
-  <button type="submit" asp-route-data="P2L" class="btn btn-default">P2L</button>
   <button type="submit" asp-route-data="SetData" asp-page-handler="SetData">Set Path</button>
   <button type="submit" asp-route-data="Clear" class="btn btn-default">Clear Log</button>
 </form>
 <hr />
-Checks:
-<div>  tbPath:  @ViewData["tbPath"] </div>
-<div>  tbLog:  @ViewData["tbLog"] </div>
-<div>  data:  @ViewData["data"] </div>
-<div>   handler:  @ViewData["handler"] </div>
-<div>   Log: @ViewData["Log"] </div>
-<div>   ViewBag.Jmeno: @ViewBag.Jmeno </div>
-<div>   ViewBag.Log: @ViewBag.Log </div>
-<hr />
-<hr />
-<div class="control-label">
-  <div class="form-group">
-    <label asp-for="tbLog" class="control-label"></label>
-  </div>
+@*Checks:
+  <div>  tbPath:  @ViewData["tbPath"] </div>
+  <div>  tbLog:  @ViewData["tbLog"] </div>
+  <div>  data:  @ViewData["data"] </div>
+  <div>   handler:  @ViewData["handler"] </div>
+  <div>   Log: @ViewData["Log"] </div>
+  <div>   ViewBag.Jmeno: @ViewBag.Jmeno </div>
+  <div>   ViewBag.Log: @ViewBag.Log </div>
+  <hr />
+  <hr />*@
+<div class="form-group">
+  <label asp-for="tbLog" class="control-label"></label>
 </div>
 @Html.Raw(@ViewBag.Log)
 <br />
-<br />
-<hr />
-<hr />

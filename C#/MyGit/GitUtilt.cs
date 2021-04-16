@@ -17,10 +17,10 @@ namespace MyGit.Models {
     public const int PrvniV = 1;
     public const string MyGitFlNm = ".MyGit.Cvs.Csv";
     public const string Hvezda = "*";
-    // promenne tridy 
+    // folders - seznam adresaru pro prochazeni  
     public static List<DirectoryInfo> folders = new List<DirectoryInfo>();
 
-    // vypis vsech podadresaru a souboru 
+    // FullDirList - vypis vsech podadresaru a souboru 
     static public void FullDirList(string MyDir) {
       DirectoryInfo dir = new DirectoryInfo(MyDir);
       // dir 
@@ -46,7 +46,7 @@ namespace MyGit.Models {
       }
     }
 
-    // vypis vsech podadresaru a souboru 
+    // Dir2List - vypis vsech podadresaru a souboru 
     public static void Dir2List(DirectoryInfo dir, string searchPattern) {
       // Console.WriteLine("Directory {0}", dir.FullName);
       // process each directory
@@ -56,7 +56,7 @@ namespace MyGit.Models {
       }
     }
 
-    // CsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar pol, Verze=1  
+    // CsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar pol, inicializace: Verze=1  
     public static void CsvCrt(DirectoryInfo pol, string searchPattern) {
       Console.WriteLine("adresář: {0} - nový adresář, žádné změny", pol.Name);
       // Zaznamy 
@@ -157,31 +157,31 @@ namespace MyGit.Models {
         record = new GitFormat(f, PrvniV);
         CsvChk(record, recsNew, recsDel, recsUpd, recsVer, DictGit);
       }
-      /*
+      /* 
         [A] = added (nový soubor)
         [M] = modified (změněný soubor)
         [D] = deleted (odstraněný soubor)
        */
       // Protokol
       if (!((recsNew.Count == 0) && (recsVer.Count == 0) && (DictGit.Count == 0))) {
-        Console.WriteLine("\t adresář: " + pol.Name + " - změny");
+        Console.WriteLine("\n\t adresář: " + pol.Name + " - změny");
         // seznam novych 
-        Console.WriteLine("\n\t [A] = added (nový soubor):");
+        if (recsNew.Count > 0) { Console.WriteLine("\n\t [A] = added (nový soubor):"); };
         foreach (GitFormat f in recsNew) {
           Console.WriteLine("[A] Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
         }
         // seznam zmenenych  
-        Console.WriteLine("\n\t [M] = modified (změněný soubor):");
+        if (recsVer.Count > 0) { Console.WriteLine("\n\t [M] = modified (změněný soubor):"); }
         foreach (GitFormat f in recsVer) {
           Console.WriteLine("[M] Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
-        }
+        }   
         // seznam smazanych 
-        Console.WriteLine("\n\t [D] = deleted (odstraněný soubor):");
+        if (DictGit.Count > 0) { Console.WriteLine("\n\t [D] = deleted (odstraněný soubor):"); }
         foreach (KeyValuePair<string, GitFormat> entry in DictGit) {
           // do something with entry.Value or entry.Key
           GitFormat f = entry.Value;
           Console.WriteLine("[D] Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
-        }
+        }       
         /*
         // seznam aktualnich  
         Console.WriteLine("\n\t Seznam aktualnich:");
@@ -214,6 +214,7 @@ namespace MyGit.Models {
 
     // DoCsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar pol, Verze=1  
     public static void DoCsvCrt(string MyDir) {
+      Console.WriteLine("\n\t Inicializace kontroly verzi pro: " + MyDir);
       // MessageBox.Show("BtCheck_Click");
       // dirs 
       DoDirList(MyDir);
@@ -223,6 +224,7 @@ namespace MyGit.Models {
 
     // DoCsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari 
     public static void DoCsvChk(string MyDir) {
+      Console.WriteLine("\n\t Kontrola verzi pro: " + MyDir );
       // MessageBox.Show("BtCheck_Click");
       // dirs 
       DoDirList(MyDir);
@@ -234,18 +236,23 @@ namespace MyGit.Models {
     public static void DoTouch(string MyDir) {
       // Console.WriteLine("update souboru: " + MyDir);
       //Create the file if it doesn't exist
-      if (!File.Exists(MyDir)) {
-        using (var sw = File.CreateText(MyDir)) {
-          sw.WriteLine("Hello, I'm a new file!!");
-          // You don't need this as the using statement will close automatically, but it does improve readability
-          sw.Close();
+      try {
+        if (!File.Exists(MyDir)) {
+          using (var sw = File.CreateText(MyDir)) {
+            sw.WriteLine("Hello, I'm a new file!!");
+            // You don't need this as the using statement will close automatically, but it does improve readability
+            sw.Close();
+          }
+          Console.WriteLine("Soubor: " + MyDir + " vytvoren.");
+        } else {
+          using (var sw = File.AppendText(MyDir)) {
+            sw.WriteLine("The next line!");
+          }
+          Console.WriteLine("Soubor: " + MyDir + " aktualizovan.");
         }
-        Console.WriteLine("Soubor: " + MyDir + " vytvoren.");
-      } else {
-        using (var sw = File.AppendText(MyDir)) {
-          sw.WriteLine("The next line!");
-        }
-        Console.WriteLine("Soubor: " + MyDir + " aktualizovan.");
+      } catch {
+        Console.WriteLine("Soubor: " + MyDir + " nelze aktualizovat!");
+        return;  // We alredy got an error trying to access dir so dont try to access it again
       }
     }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyGit.Models {
   public class MyForm {
-    [Display(Name = "Path:")]
+    [Display(Name = "Path or File:")]
     public string tbPath { get; set; }
     [Display(Name = "Log:")]
     public string tbLog { get; set; }

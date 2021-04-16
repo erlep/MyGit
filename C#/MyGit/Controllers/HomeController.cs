@@ -18,8 +18,8 @@ namespace MyGit.Controllers {
   /// </summary>
   public class HomeController : Controller {
     // Konfigurace   
-    const string MyAppName = "MyGit v1.00b7 - Control Version System";
-//    const string MyDirC = @"c:\aaC\04";
+    const string MyAppName = "MyGit v1.02 - Control Version System";
+    //    const string MyDirC = @"c:\aaC\04";
     const string MyDirC = @"./mygitdata/";
 
     const string br = "<br />";
@@ -58,7 +58,7 @@ namespace MyGit.Controllers {
       ViewBag.Jmeno = jmeno;
       // Log 
       string result = LogTxt.ToString();
-      ViewBag.Log = result.Replace("\n",br);  
+      ViewBag.Log = result.Replace("\n", br);
       return View(myform);
     }
 
@@ -97,13 +97,26 @@ namespace MyGit.Controllers {
         ViewBag.Log = ss;
       } else if (data == "Check") {
         // Check
-        GitUtilt.DoCsvChk(MyDir);
+        if (Directory.Exists(MyDir)) {
+          GitUtilt.DoCsvChk(MyDir);
+        } else {
+          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+        }
       } else if (data == "Init") {
         // Init
-        GitUtilt.DoCsvCrt(MyDir);
+        if (Directory.Exists(MyDir)) {
+          GitUtilt.DoCsvCrt(MyDir);
+        } else {
+          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+        }
       } else if (data == "Dirs") {
         // Dirs
-        GitUtilt.FullDirList(MyDir);
+        if (Directory.Exists(MyDir)) {
+          Console.WriteLine("\n\t Vypis adresare a podadresaru: " + MyDir);
+          GitUtilt.FullDirList(MyDir);
+        } else {
+          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+        }
       } else if (data == "Touch") {
         // Touch
         GitUtilt.DoTouch(MyDir);
