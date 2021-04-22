@@ -1,4 +1,4 @@
-# MyGit v1.02 - My Control Version System
+# MyGit v1.03 - My Control Version System
 
 ## Popis:
 
@@ -7,6 +7,21 @@ ASP.NET Core applikaction for file version control system.
 Program umí detekovat změny v lokálním adresáři uvedeném na vstupu.
 Při prvním spuštění si program obsah daného adresáře analyzuje a při
 každém dalším spuštění bude hlásit změny od svého posledního spuštění.
+
+## Ovládání:
+
+- Check - detekce změn v adresáři včetně podadresářů
+- Init - inicializace programu - všechny soubory nastaveny na verzi 1
+- Dirs - výpis adresáře včetně podadresářů
+- Touch file - aktualizace souboru
+- Delete file - smazání souboru
+- Set Path - nastaví "Path or File:" na výchozí hodnotu ("\\dir1\\")
+- Clear Log - nastaví "Path or File:" na výchozí hodnotu "" a promaže "Log:"
+
+## Rozhraní:
+
+- Path or File: - zadání adresáře nebo souboru pro jednotlivé operace
+- Log: - výstupní hlášení programu
 
 ## Hlášky:
 

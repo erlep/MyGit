@@ -56,22 +56,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2019 19:51:34</publishTime>
     </File>
     <File Include="MyGit.deps.json">
-      <publishTime>04/16/2021 08:33:35</publishTime>
+      <publishTime>04/22/2021 11:26:27</publishTime>
     </File>
     <File Include="MyGit.dll">
-      <publishTime>04/16/2021 08:32:39</publishTime>
+      <publishTime>04/22/2021 11:23:44</publishTime>
     </File>
     <File Include="MyGit.pdb">
-      <publishTime>04/16/2021 08:32:39</publishTime>
+      <publishTime>04/22/2021 11:23:44</publishTime>
     </File>
     <File Include="MyGit.runtimeconfig.json">
-      <publishTime>04/16/2021 08:33:35</publishTime>
+      <publishTime>04/22/2021 11:26:27</publishTime>
     </File>
     <File Include="MyGit.Views.dll">
-      <publishTime>04/16/2021 08:32:40</publishTime>
+      <publishTime>04/22/2021 11:23:45</publishTime>
     </File>
     <File Include="MyGit.Views.pdb">
-      <publishTime>04/16/2021 08:32:40</publishTime>
+      <publishTime>04/22/2021 11:23:45</publishTime>
     </File>
     <File Include="NuGet.Frameworks.dll">
       <publishTime>04/06/2021 15:54:12</publishTime>
@@ -92,7 +92,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/06/2021 15:54:13</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>04/16/2021 08:33:35</publishTime>
+      <publishTime>04/22/2021 11:26:27</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>04/14/2021 10:20:15</publishTime>

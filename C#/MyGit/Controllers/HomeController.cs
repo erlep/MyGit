@@ -18,7 +18,7 @@ namespace MyGit.Controllers {
   /// </summary>
   public class HomeController : Controller {
     // Konfigurace   
-    const string MyAppName = "MyGit v1.02 - Control Version System";
+    const string MyAppName = "MyGit v1.03 - Control Version System";
     //    const string MyDirC = @"c:\aaC\04";
     const string MyDirC = @"./mygitdata/";
 
@@ -45,7 +45,7 @@ namespace MyGit.Controllers {
       // Redirect Console.WriteLine() output to string - https://is.gd/UnYFnR
       Console.SetOut(LogTxt);
       Console.SetError(LogTxt);
-      Console.WriteLine("Hello world.");
+      // Console.WriteLine("Hello world.");
       Console.WriteLine(MyAppName);
       // zobrazeni pro ladeni 
       ViewData["tbPath"] = myform.tbPath;

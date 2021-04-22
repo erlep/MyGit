@@ -1,6 +1,8 @@
 ﻿@{
   ViewData["Title"] = "MyGit - My Control Version System";
 }
+
+
 <h2 id="popis">Popis:</h2>
 <p><a href="http://ASP.NET">ASP.NET</a> Core applikaction for file version control system.</p>
 <p>
@@ -8,6 +10,21 @@
   Při prvním spuštění si program obsah daného adresáře analyzuje a při
   každém dalším spuštění bude hlásit změny od svého posledního spuštění.
 </p>
+<h2 id="ovládání">Ovládání:</h2>
+<ul>
+  <li>Check - detekce změn v adresáři včetně podadresářů</li>
+  <li>Init - inicializace programu - všechny soubory nastaveny na verzi 1</li>
+  <li>Dirs - výpis adresáře včetně podadresářů</li>
+  <li>Touch file - aktualizace souboru</li>
+  <li>Delete file - smazání souboru</li>
+  <li>Set Path - nastaví &quot;Path or File:&quot; na výchozí hodnotu (&quot;\dir1\&quot;)</li>
+  <li>Clear Log - nastaví &quot;Path or File:&quot; na výchozí hodnotu &quot;&quot; a promaže &quot;Log:&quot;</li>
+</ul>
+<h2 id="rozhraní">Rozhraní:</h2>
+<ul>
+  <li>Path or File: - zadání adresáře nebo souboru pro jednotlivé operace</li>
+  <li>Log: - výstupní hlášení programu</li>
+</ul>
 <h2 id="hlášky">Hlášky:</h2>
 <p>[A] = added (nový soubor)</p>
 <p>[M] = modified (změněný soubor)</p>
@@ -18,3 +35,4 @@
 <h2 id="github-url---httpsgithubcomerlepmygit">GitHub URL - <a href="https://github.com/erlep/MyGit">https://github.com/erlep/MyGit</a></h2>
 <h2 id="aspnet-web---httppegaspifyhostcz"><a href="http://ASP.NET">ASP.NET</a> Web - <a href="http://peg.aspifyhost.cz">http://peg.aspifyhost.cz</a></h2>
 <h2 id="made-by-peg---httpsgithubcomerlep">made by peg - <a href="https://GitHub.com/ErleP">https://GitHub.com/ErleP</a></h2>
+
