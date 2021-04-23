@@ -18,9 +18,10 @@
       </div>
       <div class="form-group">
         @*<input type="submit" value="Index" class="btn btn-default" />
-          <button type="submit" asp-route-data="P2L" class="btn btn-default">P2L</button>*@
+    <button type="submit" asp-route-data="P2L" class="btn btn-default">P2L</button>*@
         <button type="submit" asp-route-data="Check" class="btn btn-default">Check</button>
         <button type="submit" asp-route-data="Init" class="btn btn-default">Init</button>
+        <button type="submit" asp-route-data="Versions" class="btn btn-default">Versions</button>
         <button type="submit" asp-route-data="Dirs" class="btn btn-default">Dirs</button>
         <button type="submit" asp-route-data="Touch" class="btn btn-default">Touch file</button>
         <button type="submit" asp-route-data="Delete" class="btn btn-default">Delete file</button>
@@ -29,7 +30,7 @@
   </div>
 </div>
 <form method="POST">
-  <button type="submit" asp-route-data="SetData" asp-page-handler="SetData">Set Path</button>
+  <button type="submit" asp-route-data="SetData" asp-page-handler="SetData" class="btn btn-default">Set Path</button>
   <button type="submit" asp-route-data="Clear" class="btn btn-default">Clear Log</button>
 </form>
 <hr />

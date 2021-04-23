@@ -18,7 +18,7 @@ namespace MyGit.Controllers {
   /// </summary>
   public class HomeController : Controller {
     // Konfigurace   
-    const string MyAppName = "MyGit v1.03 - Control Version System";
+    const string MyAppName = "MyGit v1.04 - Control Version System";
     //    const string MyDirC = @"c:\aaC\04";
     const string MyDirC = @"./mygitdata/";
 
@@ -100,14 +100,21 @@ namespace MyGit.Controllers {
         if (Directory.Exists(MyDir)) {
           GitUtilt.DoCsvChk(MyDir);
         } else {
-          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+          Console.WriteLine(GitUtilt.mb("Adresář: " + MyDir + " nenalezen!"));
         }
       } else if (data == "Init") {
         // Init
         if (Directory.Exists(MyDir)) {
           GitUtilt.DoCsvCrt(MyDir);
         } else {
-          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+          Console.WriteLine(GitUtilt.mb("Adresář: " + MyDir + " nenalezen!"));
+        }
+      } else if (data == "Versions") {
+        // Versions
+        if (Directory.Exists(MyDir)) {
+          GitUtilt.DoCsvVer(MyDir);
+        } else {
+          Console.WriteLine(GitUtilt.mb("Adresář: " + MyDir + " nenalezen!"));
         }
       } else if (data == "Dirs") {
         // Dirs
@@ -115,7 +122,7 @@ namespace MyGit.Controllers {
           Console.WriteLine("\n\t Vypis adresare a podadresaru: " + MyDir);
           GitUtilt.FullDirList(MyDir);
         } else {
-          Console.WriteLine("Adresar: " + MyDir + " nenalezen!");
+          Console.WriteLine(GitUtilt.mb("Adresář: " + MyDir + " nenalezen!"));
         }
       } else if (data == "Touch") {
         // Touch
@@ -213,8 +220,6 @@ namespace MyGit.Controllers {
     public void Cara() {
       Console.WriteLine("\n===============================================================");
     }
-
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() {

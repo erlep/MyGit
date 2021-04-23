@@ -1,4 +1,4 @@
-# MyGit v1.03 - My Control Version System
+# MyGit v1.04 - My Control Version System
 
 ## Popis:
 
@@ -8,10 +8,13 @@ Program umí detekovat změny v lokálním adresáři uvedeném na vstupu.
 Při prvním spuštění si program obsah daného adresáře analyzuje a při
 každém dalším spuštění bude hlásit změny od svého posledního spuštění.
 
+[![Benzin-Akt](https://lh3.googleusercontent.com/yp_Nt6guJyUztks1wE9HgoaLnI6lhhXv5ya4CTim79o2nxZUIPqmeBpW2xC9en-J_oPs0tkRnUD6-tSMvMrm1S7o6Pp4_ybttm7R_IKNBwFZqNLDapgMsUnuoISaet4a3uFYUEnPhhM=w2400)](http://peg.aspifyhost.cz)
+
 ## Ovládání:
 
 - Check - detekce změn v adresáři včetně podadresářů
 - Init - inicializace programu - všechny soubory nastaveny na verzi 1
+- Versions - vypis verzí jednotlivých souborů
 - Dirs - výpis adresáře včetně podadresářů
 - Touch file - aktualizace souboru
 - Delete file - smazání souboru

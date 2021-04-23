@@ -1,4 +1,6 @@
-qq.txt test je tu a nechci v gitu
-# MyGit v1.03 - My Control Version System
-
-
+Hello, I'm a new file!!
+The next line!
+The next line!
+The next line!
+The next line!
+The next line!

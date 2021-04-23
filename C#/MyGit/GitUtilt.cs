@@ -17,8 +17,8 @@ namespace MyGit.Models {
     public const int PrvniV = 1;
     public const string MyGitFlNm = ".MyGit.Cvs.Csv";
     public const string Hvezda = "*";
-    // folders - seznam adresaru pro prochazeni  
-    public static List<DirectoryInfo> folders = new List<DirectoryInfo>();
+    // Adresare - seznam adresaru pro prochazeni      
+    public static List<DirectoryInfo> Adresare = new List<DirectoryInfo>();
 
     // FullDirList - vypis vsech podadresaru a souboru 
     static public void FullDirList(string MyDir) {
@@ -41,17 +41,17 @@ namespace MyGit.Models {
       // If I have been able to see the files in the directory I should also be able 
       // to look at its directories so I dont think I should place this in a try catch block
       foreach (DirectoryInfo d in dir.GetDirectories()) {
-        folders.Add(d);
+        Adresare.Add(d);
         FullDirList(d.FullName);
       }
     }
 
-    // Dir2List - vypis vsech podadresaru a souboru 
+    // Dir2List - naplni adresare do - List<DirectoryInfo> Adresare
     public static void Dir2List(DirectoryInfo dir, string searchPattern) {
       // Console.WriteLine("Directory {0}", dir.FullName);
       // process each directory
       foreach (DirectoryInfo d in dir.GetDirectories()) {
-        folders.Add(d);
+        Adresare.Add(d);
         Dir2List(d, searchPattern);
       }
     }
@@ -84,8 +84,10 @@ namespace MyGit.Models {
     }
 
     // CsvCti - cteni souboru ".MyGit.Cvs.Csv" pro adresar pol, vrati dict s obsahem csv souboru 
-    public static SortedDictionary<string, GitFormat> CsvCti(DirectoryInfo pol, string searchPattern) {
-      // Console.WriteLine("CsvCti : Directory {0}", pol.Name);
+    public static SortedDictionary<string, GitFormat> CsvCti(DirectoryInfo pol, string searchPattern, Boolean Vypisuj) {
+      if (Vypisuj) {
+        Console.WriteLine("CsvCti : Directory {0}", pol.Name);
+      }
       // soubor ".MyGit.Cvs.Csv" v akt. adresari, kdyz neexistuje tak jej vytvor
       string FlNm = pol.FullName + @"\" + MyGitFlNm;
       if (!(File.Exists(FlNm))) {
@@ -99,11 +101,20 @@ namespace MyGit.Models {
         var records = csv.GetRecords<GitFormat>();
         // Vytvoreni Dictionary 
         foreach (GitFormat f in records) {
-          // Console.WriteLine("Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
+          if (Vypisuj) {
+            Console.WriteLine("Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
+          }
           DictGit.Add(f.Name, f);
         }
       }
       return DictGit;
+    }
+
+    // CsvVer - vypis souboru ".MyGit.Cvs.Csv" pro adresar pol
+    public static void CsvVer(DirectoryInfo pol, string searchPattern) {
+      //Console.WriteLine("CsvChk : Directory {0}", pol.Name);
+      // CsvCti - Cteni souboru ".MyGit.Cvs.Csv"
+      SortedDictionary<string, GitFormat> DictGit = CsvCti(pol, Hvezda, true);
     }
 
     // CsvChk - porovna 1 soubor, "GitFormat record" vs. "DictGit[record.Name]"
@@ -136,11 +147,11 @@ namespace MyGit.Models {
 
     }
 
-    // CsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari 
+    // CsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari pol
     public static void CsvChk(DirectoryInfo pol, string searchPattern) {
       //Console.WriteLine("CsvChk : Directory {0}", pol.Name);
       // CsvCti - Cteni souboru ".MyGit.Cvs.Csv"
-      SortedDictionary<string, GitFormat> DictGit = CsvCti(pol, Hvezda);
+      SortedDictionary<string, GitFormat> DictGit = CsvCti(pol, Hvezda, false);
       // Zaznamy 
       List<GitFormat> recsNew = new List<GitFormat>(); // nove
       List<GitFormat> recsDel = new List<GitFormat>(); // smazane
@@ -174,14 +185,14 @@ namespace MyGit.Models {
         if (recsVer.Count > 0) { Console.WriteLine("\n\t [M] = modified (změněný soubor):"); }
         foreach (GitFormat f in recsVer) {
           Console.WriteLine("[M] Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
-        }   
+        }
         // seznam smazanych 
         if (DictGit.Count > 0) { Console.WriteLine("\n\t [D] = deleted (odstraněný soubor):"); }
         foreach (KeyValuePair<string, GitFormat> entry in DictGit) {
           // do something with entry.Value or entry.Key
           GitFormat f = entry.Value;
           Console.WriteLine("[D] Type: " + f.Type + "  Name: " + f.Name + "  Size: " + f.Size + "  DateTime: " + f.DateTime + "  Version: " + f.Version);
-        }       
+        }
         /*
         // seznam aktualnich  
         Console.WriteLine("\n\t Seznam aktualnich:");
@@ -200,36 +211,45 @@ namespace MyGit.Models {
       }
     }
 
-    // DoDirList - naplni adresare do - List<DirectoryInfo> folders
+    // DoDirList - naplni adresare do - List<DirectoryInfo> Adresare
     public static void DoDirList(string MyDir) {
       // Console.WriteLine("Directory {0}", dir.FullName);
       // Seznam Souboru a adresaru 
       DirectoryInfo di = new DirectoryInfo(MyDir);
       // promazani 
-      folders.Clear();
+      Adresare.Clear();
       // pridam korenovy 
-      folders.Add(di);
+      Adresare.Add(di);
       Dir2List(di, GitUtilt.Hvezda);
     }
 
-    // DoCsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar pol, Verze=1  
+    // DoCsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar MyDir, Verze=1  
     public static void DoCsvCrt(string MyDir) {
       Console.WriteLine("\n\t Inicializace kontroly verzi pro: " + MyDir);
       // MessageBox.Show("BtCheck_Click");
       // dirs 
       DoDirList(MyDir);
       // CsvCrt - vytvoreni souboru ".MyGit.Cvs.Csv" pro adresar pol, Verze=1  
-      foreach (DirectoryInfo pol in folders) { CsvCrt(pol, GitUtilt.Hvezda); };
+      foreach (DirectoryInfo pol in Adresare) { CsvCrt(pol, GitUtilt.Hvezda); };
     }
 
     // DoCsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari 
     public static void DoCsvChk(string MyDir) {
-      Console.WriteLine("\n\t Kontrola verzi pro: " + MyDir );
+      Console.WriteLine("\n\t Kontrola verzi pro: " + MyDir);
       // MessageBox.Show("BtCheck_Click");
       // dirs 
       DoDirList(MyDir);
       // CsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari 
-      foreach (DirectoryInfo pol in folders) { CsvChk(pol, GitUtilt.Hvezda); };
+      foreach (DirectoryInfo pol in Adresare) { CsvChk(pol, GitUtilt.Hvezda); };
+    }
+
+    // DoCsvVer - vypise verze souboru z ".MyGit.Cvs.Csv" 
+    public static void DoCsvVer(string MyDir) {
+      Console.WriteLine("\n\t Kontrola verzi pro: " + MyDir);
+      // dirs 
+      DoDirList(MyDir);
+      // CsvChk - porovnani souboru ".MyGit.Cvs.Csv" vuci adresari 
+      foreach (DirectoryInfo pol in Adresare) { CsvVer(pol, GitUtilt.Hvezda); };
     }
 
     // DoTouch - update souboru   
@@ -251,7 +271,7 @@ namespace MyGit.Models {
           Console.WriteLine("Soubor: " + MyDir + " aktualizovan.");
         }
       } catch {
-        Console.WriteLine("Soubor: " + MyDir + " nelze aktualizovat!");
+        Console.WriteLine(mb("Soubor: " + MyDir + " nelze aktualizovat!"));
         return;  // We alredy got an error trying to access dir so dont try to access it again
       }
     }
@@ -261,10 +281,15 @@ namespace MyGit.Models {
       // Console.WriteLine("smazani souboru: " + MyDir);
       if (File.Exists(MyDir)) {
         File.Delete(MyDir);
-        Console.WriteLine("Soubor: " + MyDir + " smazan.");
+        Console.WriteLine("Soubor: " + MyDir + " smazán.");
       } else {
-        Console.WriteLine("Soubor: " + MyDir + " nenalezen!");
+        Console.WriteLine(mb("Soubor: " + MyDir + " nenalezen!"));
       }
+    }
+
+    // vrat zvyrazneny retezec
+    public static string mb(string ss) {
+      return "<h3>" + ss + "</h3>";
     }
 
 
