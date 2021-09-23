@@ -2,13 +2,13 @@
 
 ## Popis:
 
-ASP.NET Core applikaction for file version control system.
+ASP.NET Core applikaction for file version control system - http://peg.aspifyhost.cz
 
 Program umí detekovat změny v lokálním adresáři uvedeném na vstupu.
 Při prvním spuštění si program obsah daného adresáře analyzuje a při
 každém dalším spuštění bude hlásit změny od svého posledního spuštění.
 
-[![Benzin-Akt](https://lh3.googleusercontent.com/yp_Nt6guJyUztks1wE9HgoaLnI6lhhXv5ya4CTim79o2nxZUIPqmeBpW2xC9en-J_oPs0tkRnUD6-tSMvMrm1S7o6Pp4_ybttm7R_IKNBwFZqNLDapgMsUnuoISaet4a3uFYUEnPhhM=w2400)](http://peg.aspifyhost.cz)
+[![MyGit](https://lh3.googleusercontent.com/yp_Nt6guJyUztks1wE9HgoaLnI6lhhXv5ya4CTim79o2nxZUIPqmeBpW2xC9en-J_oPs0tkRnUD6-tSMvMrm1S7o6Pp4_ybttm7R_IKNBwFZqNLDapgMsUnuoISaet4a3uFYUEnPhhM=w2400)](http://peg.aspifyhost.cz)
 
 ## Ovládání:
 
